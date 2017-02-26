@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller">
+	<children>
+				<MenuBar>
+					<menus>
+						<Menu mnemonicParsing="false" text="Project">
+							<items>
+								<MenuItem mnemonicParsing="false" onAction="#newFile" text="New...">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem mnemonicParsing="false" onAction="#openFile" text="Open...">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save...">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<Menu mnemonicParsing="false" text="Import">
+									<items>
+										<MenuItem mnemonicParsing="false" onAction="#importFileCoordonate" text="Coordonate" />
+
+										<MenuItem mnemonicParsing="false" onAction="#importFileMasuratori" text="Masuratori">
+										</MenuItem>
+									</items>
+								</Menu>
+
+								<MenuItem mnemonicParsing="false" onAction="#exportFile" text="Export...">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem mnemonicParsing="false" onAction="#exitApplication" onMenuValidation="#exitApplication" text="Exit" />
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="Edit">
+							<items>
+								<MenuItem mnemonicParsing="false" text="Undo Typing">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem mnemonicParsing="false" text="Cut">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<MenuItem mnemonicParsing="false" text="Copy">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<MenuItem mnemonicParsing="false" text="Paste">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem mnemonicParsing="false" text="Delete">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="ANY" />
+									</accelerator>
+								</MenuItem>
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem mnemonicParsing="false" text="Select All">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<MenuItem mnemonicParsing="false" text="Find/Replace">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="Calculate">
+							<items>
+								<Menu mnemonicParsing="false" text="Chose elipsoid">
+									<items>
+										<RadioMenuItem fx:id="grs80" mnemonicParsing="false" onAction="#elipsoidChose" onMenuValidation="#elipsoidChose" text="GRS80" />
+										<RadioMenuItem fx:id="wgs84" mnemonicParsing="false" onAction="#elipsoidChose" onMenuValidation="#elipsoidChose" text="WGS84" />
+										<RadioMenuItem fx:id="krasovsky" mnemonicParsing="false" onAction="#elipsoidChose" onMenuValidation="#elipsoidChose" text="Krasovsky" />
+									</items>
+								</Menu>
+								<MenuItem mnemonicParsing="false" onAction="#showData" text="Calc" />
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="Help">
+							<items>
+								<MenuItem mnemonicParsing="false" text="About" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+		<BorderPane VBox.vgrow="ALWAYS">
+			<bottom>
+				<Label text="Label" BorderPane.alignment="CENTER" />
+			</bottom>
+			<left>
+				<AnchorPane prefHeight="647.0" prefWidth="269.0">
+					<BorderPane.margin>
+						<Insets />
+					</BorderPane.margin>
+					<children>
+						<TableView fx:id="tableCoord" editable="true" layoutX="7.0" prefHeight="600.0" prefWidth="362.0">
+							<columns>
+								<TableColumn fx:id="Id" prefWidth="55.0" text="Name" />
+								<TableColumn fx:id="X" prefWidth="75.0" text="X" />
+								<TableColumn fx:id="Y" prefWidth="75.0" text="Y" />
+								<TableColumn fx:id="Z" prefWidth="75.0" text="Z" />
+								<TableColumn fx:id="obs" text="Obs" />
+							</columns>
+						</TableView>
+						<TextField fx:id="idField" layoutX="10.0" layoutY="612.0" prefHeight="25.0" prefWidth="50.0" promptText="Id" AnchorPane.rightAnchor="320.0" />
+						<TextField layoutX="55.0" layoutY="612.0" prefHeight="25.0" prefWidth="80.0" promptText="X" fx:id="xField" />
+						<TextField fx:id="yField" layoutX="140.0" layoutY="612.0" prefHeight="25.0" prefWidth="80.0" promptText="Y" />
+						<TextField fx:id="zField" layoutX="225.0" layoutY="612.0" prefHeight="25.0" prefWidth="80.0" promptText="Z" />
+						<TextField fx:id="obsField" layoutX="310.0" layoutY="612.0" prefHeight="25.0" prefWidth="50.0" promptText="obs" />
+						<Button layoutY="650.0" mnemonicParsing="false" onAction="#addButton" prefHeight="25.0" prefWidth="85.0" text="Add Point" />
+						<Button layoutX="180.0" layoutY="650.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="85.0" text="Delete" />
+						<Button layoutX="90.0" layoutY="650.0" mnemonicParsing="false" onAction="#importFileCoordonate" prefHeight="25.0" prefWidth="85.0" text="Add file" />
+						<Button layoutX="270.0" layoutY="650.0" mnemonicParsing="false" onAction="#clearAllButtonClicked" prefHeight="25.0" prefWidth="85.0" text="Clear All" />
+					</children>
+				</AnchorPane>
+			</left>
+			<center>
+				<VBox BorderPane.alignment="CENTER">
+					<children>
+						<TableView fx:id="tableMas" fixedCellSize="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="266.0" prefWidth="732.0" VBox.vgrow="ALWAYS">
+							<columns>
+								<TableColumn fx:id="from" prefWidth="100.0" text="From Pt." />
+								<TableColumn fx:id="to" prefWidth="100.0" text="To Pt." />
+								<TableColumn fx:id="type" prefWidth="100.0" text="Type" />
+								<TableColumn fx:id="distance" prefWidth="100.0" text="Distance[m]" />
+								<TableColumn fx:id="sigmaDX" prefWidth="150.0" text="Sigma X" />
+								<TableColumn fx:id="sigmaDY" prefWidth="150.0" text="Sigma Y" />
+								<TableColumn fx:id="sigmaDZ" prefWidth="150.0" text="Sigma Z" />
+
+							</columns>
+						</TableView>
+						<Pane onMouseClicked="#showData" prefHeight="518.0" prefWidth="732.0">
+							<children>
+								<TextField fx:id="idField1" layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="100.0" promptText="From Pt." />
+								<TextField layoutX="101.0" layoutY="2.0" prefHeight="25.0" prefWidth="100.0" promptText="To Pt." fx:id="xField1" />
+								<TextField fx:id="zField1" layoutX="303.0" layoutY="2.0" prefHeight="25.0" prefWidth="98.0" promptText="Distance" />
+								<TextField fx:id="obsField1" layoutX="401.0" layoutY="2.0" prefHeight="25.0" prefWidth="150.0" promptText="obs" />
+								<TextField fx:id="obsField11" layoutX="552.0" layoutY="2.0" prefHeight="25.0" prefWidth="150.0" promptText="obs" />
+								<TextField fx:id="yField1" layoutX="202.0" layoutY="2.0" prefHeight="25.0" prefWidth="100.0" promptText="Type" />
+								<TextField fx:id="obsField111" layoutX="703.0" layoutY="2.0" prefHeight="25.0" prefWidth="148.0" promptText="obs" />
+								<Button alignment="TOP_CENTER" layoutX="231.0" layoutY="27.0" mnemonicParsing="false" onAction="#addMasButton" prefHeight="25.0" prefWidth="85.0" text="Add Mes." />
+								<Button alignment="TOP_CENTER" layoutX="316.0" layoutY="27.0" mnemonicParsing="false" onAction="#importFileMasuratori" prefHeight="25.0" prefWidth="85.0" text="Add file" />
+								<Button alignment="TOP_CENTER" layoutX="401.0" layoutY="27.0" mnemonicParsing="false" onAction="#deleteMesurementsButtonClicked" prefHeight="25.0" prefWidth="85.0" text="Delete" />
+								<Button alignment="TOP_CENTER" layoutX="486.0" layoutY="27.0" mnemonicParsing="false" onAction="#clearAllMesButtonClicked" prefHeight="25.0" prefWidth="85.0" text="Clear All" />
+							</children>
+						</Pane>
+					</children>
+					<BorderPane.margin>
+						<Insets right="5.0" />
+					</BorderPane.margin>
+				</VBox>
+			</center>
+		</BorderPane>
+	</children>
+</VBox>
